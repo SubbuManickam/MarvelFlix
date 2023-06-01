@@ -1,12 +1,14 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 //Register new User
 router.post("/register", async (req, res) => {
     const newUser = new User({
         userName: req.body.userName,
         email: req.body.email,
-        password: req.body.password
+        password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString(),
     });
 
     try{
@@ -16,5 +18,33 @@ router.post("/register", async (req, res) => {
         res.status(500).json(err);
     }
 })
+
+//Login existing User
+router.post("/login", async (req, res) => {
+    try {
+        const user = await User.findOne({email:req.body.email});
+
+        if(!user) {
+            return res.status(401).json("Enter valid email address or register");
+        }
+
+        const decryptPassword = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
+        const originalPassword = decryptPassword.toString(CryptoJS.enc.Utf8);
+
+        if(originalPassword !== req.body.password) {
+            return res.status(401).json("Enter valid password");
+        }
+
+        const {password, ...details} = user._doc;
+
+        const token = jwt.sign({id: user._id, isAdmin: user.isAdmin}, process.env.SECRET_KEY, {expiresIn: "2d"});
+
+        return res.status(200).json({...details, token});
+    
+    } catch(err) {
+        return res.status(500).json(err)
+    }
+})
+
 
 module.exports = router;
