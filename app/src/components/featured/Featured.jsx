@@ -21,7 +21,7 @@ const Featured = ({type}) => {
       )}
       <img src="/Subbu.Manickam.jpg" alt="" />
       <div className="info">
-        <img src="/ironman.webp" alt="" />
+        <img src="/eternals_logo.png" alt="" />
         <span className='desc'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et earum animi assumenda! Culpa impedit obcaecati rerum sapiente non neque nihil architecto quam alias beatae. Nemo dignissimos quia nam vel dolorum?</span>
         <div className="buttons">
             <button className="play">
