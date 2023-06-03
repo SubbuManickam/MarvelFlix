@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./featured.scss"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import axios from 'axios';
 
 const Featured = ({type}) => {
+
+  const [featuredMovie, setFeaturedMovie] = useState({});
+
+  useEffect(() => {
+    const getFeaturedMovie = async() => {
+      try {
+        const res = await axios.get(`/movies/featured?type=${type}` , {
+          headers: {
+            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2E4ZGNhMmY3NGUzZTA1ZWQzOTE2MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3NTMzNTksImV4cCI6MTY4NTkyNjE1OX0.KwZ5aveV2DqM3Dwc-58VgaqD3qI-IvJaMjJCLxMDSlE"
+          }
+        });
+        setFeaturedMovie(res.data[0]);
+      } catch (err) {
+        console.log(err)
+      }
+    };
+    getFeaturedMovie();
+  }, [type]);
+
   return (
     <div className='featured'>
       {type && (
@@ -19,10 +39,10 @@ const Featured = ({type}) => {
           </select>
         </div>
       )}
-      <img src="/Subbu.Manickam.jpg" alt="" />
+      <img src={featuredMovie.img} alt="" />
       <div className="info">
-        <img src="/eternals_logo.png" alt="" />
-        <span className='desc'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et earum animi assumenda! Culpa impedit obcaecati rerum sapiente non neque nihil architecto quam alias beatae. Nemo dignissimos quia nam vel dolorum?</span>
+        <img src={featuredMovie.logo} alt="" />
+        <span className='desc'>{featuredMovie.desc}</span>
         <div className="buttons">
             <button className="play">
                 <PlayArrowIcon/>
