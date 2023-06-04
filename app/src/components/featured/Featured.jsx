@@ -4,7 +4,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import axios from 'axios';
 
-const Featured = ({type}) => {
+const Featured = ({type, setPhase}) => {
 
   const [featuredMovie, setFeaturedMovie] = useState({});
 
@@ -13,7 +13,7 @@ const Featured = ({type}) => {
       try {
         const res = await axios.get(`/movies/featured?type=${type}` , {
           headers: {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2E4ZGNhMmY3NGUzZTA1ZWQzOTE2MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3NTMzNTksImV4cCI6MTY4NTkyNjE1OX0.KwZ5aveV2DqM3Dwc-58VgaqD3qI-IvJaMjJCLxMDSlE"
+            token: "Bearer "+ JSON.parse(localStorage.getItem("user")).token
           }
         });
         setFeaturedMovie(res.data[0]);
@@ -29,8 +29,8 @@ const Featured = ({type}) => {
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="phase" id="phase">
-            <option>Phase</option>
+          <select name="phase" id="phase" onChange={(e) => setPhase(e.target.value)}>
+            <option value="">Phase</option>
             <option value="phase1">Phase 1</option>
             <option value="phase2">Phase 2</option>
             <option value="phase3">Phase 3</option>
@@ -58,4 +58,4 @@ const Featured = ({type}) => {
   )
 }
 
-export default Featured
+export default Featured;

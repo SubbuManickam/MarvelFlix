@@ -1,19 +1,38 @@
 import React, { useRef, useState } from 'react'
 import "./register.scss"
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Register = () => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [userName, setUserName] = useState("")
+    
+    const navigate = useNavigate(); 
+
     const emailRef = useRef()
     const passwordRef = useRef()
+    const userNameRef = useRef()
 
     const handleProceed = () => {
         setEmail(emailRef.current.value)
     }
 
-    const handleFinish = () => {
+    const handleFinish = async (e) => {
+        e.preventDefault();
         setPassword(passwordRef.current.value)
+        setUserName(userNameRef.current.value)
+        try{
+            await axios.post("auth/register", {userName, email, password});
+            navigate("/login");
+        } catch (err) {
+
+        }
+    }
+
+    const navigateSignin = () => {
+        navigate("/login");
     }
 
   return (
@@ -21,7 +40,7 @@ const Register = () => {
         <div className="top">
             <div className="wrapper">
                 <img className='logo' src="/logo.png" alt="" />
-                <button className='signin'>Sign In</button>
+                <button className='signin' onClick={navigateSignin}>Sign In</button>
             </div>
         </div>      
         <div className="container">
@@ -36,6 +55,7 @@ const Register = () => {
                     </div>
                 ) : (
                     <form className="input">
+                        <input type="userName" placeholder='Username' ref={userNameRef}/>
                         <input type="password" placeholder='Password' ref={passwordRef}/>
                         <button className='proceed' onClick={handleFinish}>Start</button>
                     </form>
@@ -46,4 +66,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Register;

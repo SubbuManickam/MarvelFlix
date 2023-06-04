@@ -6,7 +6,6 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import ReactPlayer from 'react-player';
 
 const ListItem = ({index, item}) => {
     
@@ -18,7 +17,7 @@ const ListItem = ({index, item}) => {
         try {
           const res = await axios.get("/movies/getMovie/" + item, {
             headers: {
-              token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2E4ZGNhMmY3NGUzZTA1ZWQzOTE2MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3NTMzNTksImV4cCI6MTY4NTkyNjE1OX0.KwZ5aveV2DqM3Dwc-58VgaqD3qI-IvJaMjJCLxMDSlE"
+              token: "Bearer "+ JSON.parse(localStorage.getItem("user")).token
             }
           });
           // console.log(res.data);

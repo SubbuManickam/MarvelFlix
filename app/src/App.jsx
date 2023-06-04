@@ -1,12 +1,15 @@
+import { useContext } from "react";
 import "./app.scss"
 import Home from "./home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Watch from "./pages/watch/Watch";
-import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { AuthContext } from "./components/context/authContext/AuthContext";
 
 const App = () => {
-  const user = true;
+  const {user} = useContext(AuthContext);
+  
   return (
     <Router>
       <Routes>

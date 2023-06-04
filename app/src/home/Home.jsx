@@ -14,10 +14,9 @@ const Home = ({type}) => {
       try {
         const res = await axios.get(`lists${type ? "?type=" + type : ""}${phase ? "&phase=" + phase : ""}`, {
           headers: {
-            token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0N2E4ZGNhMmY3NGUzZTA1ZWQzOTE2MCIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODU3NTMzNTksImV4cCI6MTY4NTkyNjE1OX0.KwZ5aveV2DqM3Dwc-58VgaqD3qI-IvJaMjJCLxMDSlE"
+            token: "Bearer " + JSON.parse(localStorage.getItem("user")).token,
           }
         });
-        console.log(res.data);
         setLists(res.data);
       } catch (err) {
         console.log(err);
@@ -28,7 +27,7 @@ const Home = ({type}) => {
   return (
     <div className='home'>
       <Navbar/>
-      <Featured type={type}/>
+      <Featured type={type} setPhase={setPhase}/>
       {lists.map((list) => (
         <List list={list}/>
       ))}
@@ -36,4 +35,4 @@ const Home = ({type}) => {
   )
 }
 
-export default Home
+export default Home;
