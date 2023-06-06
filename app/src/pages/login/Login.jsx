@@ -24,7 +24,7 @@ const Login = () => {
     <div className='login'>
         <div className="top">
             <div className="wrapper">
-                <img className='logo' src="/logo.png" alt="" />
+                <img className='logo' src="/logo.png" alt="" onClick={navigateRegister}/>
             </div>
         </div>      
         <div className="container">

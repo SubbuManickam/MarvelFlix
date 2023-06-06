@@ -3,10 +3,12 @@ import "./featured.scss"
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Featured = ({type, setPhase}) => {
 
   const [featuredMovie, setFeaturedMovie] = useState({});
+  const [movie, setMovie] = useState({});
 
   useEffect(() => {
     const getFeaturedMovie = async() => {
@@ -16,7 +18,13 @@ const Featured = ({type, setPhase}) => {
             token: "Bearer "+ JSON.parse(localStorage.getItem("user")).token
           }
         });
+        const movie = await axios.get("/movies/getMovie/" + res.data[0]._id, {
+          headers: {
+            token: "Bearer "+ JSON.parse(localStorage.getItem("user")).token
+          }
+        });
         setFeaturedMovie(res.data[0]);
+        setMovie(movie.data);
       } catch (err) {
         console.log(err)
       }
@@ -39,15 +47,17 @@ const Featured = ({type, setPhase}) => {
           </select>
         </div>
       )}
-      <img src={featuredMovie.img} alt="" />
+      <img src={featuredMovie.thumb} alt="" />
       <div className="info">
         <img src={featuredMovie.logo} alt="" />
         <span className='desc'>{featuredMovie.desc}</span>
         <div className="buttons">
+        <Link to={{pathname:"/watch" }} state={movie} style={{textDecoration: 'none'}}>
             <button className="play">
                 <PlayArrowIcon/>
                 <span>Play</span>
             </button>
+        </Link>
             <button className="more">
                 <InfoOutlinedIcon/>
                 <span>Info</span>

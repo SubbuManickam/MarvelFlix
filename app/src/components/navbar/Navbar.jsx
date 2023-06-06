@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link to="/movies" className='link'>
               <span>Movies</span>
             </Link>
-            <span>New and Popular</span>
+            <span>Coming Soon</span>
             <span>My List</span>
         </div>
         <div className="right">

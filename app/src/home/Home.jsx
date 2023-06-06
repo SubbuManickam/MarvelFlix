@@ -29,7 +29,7 @@ const Home = ({type}) => {
       <Navbar/>
       <Featured type={type} setPhase={setPhase}/>
       {lists.map((list) => (
-        <List list={list}/>
+        <List list={list} key={list.getItem}/>
       ))}
     </div>
   )

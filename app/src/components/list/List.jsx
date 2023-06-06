@@ -28,7 +28,7 @@ const List = ({list}) => {
         <ArrowBackIosOutlinedIcon className='sliderArrow left' onClick={() => handleScroll("left")}/>
         <div className="container" ref={listRef}>
             {list.content.map((item, index) => (
-              <ListItem index={index} item={item}/>
+              <ListItem index={index} item={item} key={index}/>
             ))}
         </div>
         <ArrowForwardIosOutlinedIcon className='sliderArrow right' onClick={() => handleScroll("right")}/>

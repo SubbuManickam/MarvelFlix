@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import "./register.scss"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {toast} from "react-toastify";
+import validator from "validator";
 
 const Register = () => {
 
@@ -16,16 +18,37 @@ const Register = () => {
     const userNameRef = useRef()
 
     const handleProceed = () => {
+        if(!emailRef.current.value) {
+            return toast.error('Email Address cannot be empty!');
+        } 
+        if(!validator.isEmail(emailRef.current.value)) {
+            return toast.error('Enter a valid Email Address!')
+        } 
         setEmail(emailRef.current.value)
     }
 
     const handleFinish = async (e) => {
         e.preventDefault();
-        setPassword(passwordRef.current.value)
-        setUserName(userNameRef.current.value)
+        if(!userNameRef.current.value || !passwordRef.current.value) {
+            return toast.error('Username or Password cannot be empty!');
+        }
         try{
-            await axios.post("auth/register", {userName, email, password});
-            navigate("/login");
+            await axios.post("auth/register", {userName, email, password}).then(response => {
+                if(response.status === 201) {
+                    toast.success("Successfully Registered!");
+                    navigate("/login");
+                } else {
+                    toast.error("Register Again!");
+                    setEmail("");
+                    navigate("/register");
+                }
+            }).catch(() => {
+                toast.error("Register Again!");
+                setEmail("");
+                navigate("/register");
+            });
+            // response.status === 201 ? toast.success("Successfully Registered!") : toast.error("Register Again!"));
+            // navigate("/login");
         } catch (err) {
 
         }
@@ -55,8 +78,8 @@ const Register = () => {
                     </div>
                 ) : (
                     <form className="input">
-                        <input type="userName" placeholder='Username' ref={userNameRef}/>
-                        <input type="password" placeholder='Password' ref={passwordRef}/>
+                        <input type="userName" placeholder='Username' onInput={e => setUserName(e.target.value)} ref={userNameRef}/>
+                        <input type="password" placeholder='Password' onInput={e => setPassword(e.target.value)} ref={passwordRef}/>
                         <button className='proceed' onClick={handleFinish}>Start</button>
                     </form>
                 )
