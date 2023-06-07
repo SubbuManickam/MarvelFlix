@@ -13,26 +13,17 @@
         object-fit: cover;
     }
 
-    video {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
     &:hover {
-        width: 320px;
-        height: 420px;
+
+        width: 325px;
+        height: 300px;
         box-shadow: 7px 8px 18px -15px #ffffff;
         position: absolute;
-        top: -220px;
+        top: -150px;
         border-radius: 5px;
 
-        img {
-            height: 200px;
-            object-fit: inherit;
+        .listCard {
+            width: '18rem';
         }
 
         .itemInfo {
@@ -78,5 +69,5 @@
                 color: lightgray;
             }
         }    
-    }
+}
 }

@@ -6,6 +6,7 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 const ListItem = ({index, item}) => {
     
@@ -35,8 +36,8 @@ const ListItem = ({index, item}) => {
       <img src={movie.img} alt="" />
       {isHovered && (
         <>
-        {/* <ReactPlayer url="https://www.youtube.com/watch?v=8ugaeA-nMTc" playing={true} width="100%" height="100%" muted={true} controls={true}/> */}
-        <video src={movie.video} autoPlay muted loop/>
+        {/* <ReactPlayer url={movie.video} playing={true} width="100%" height="100%" muted={true} controls={true} className="video"/> */}
+        {/* <video src={movie.video} autoPlay muted loop/> */}
         <div className="itemInfo">
           <div className="icons">
               <PlayArrowIcon className='icon'/>

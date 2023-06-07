@@ -22,8 +22,9 @@ const Home = ({type}) => {
         console.log(err);
       }
     };
-    getRandomLists();
+    window.addEventListener("storage", getRandomLists());
   }, [phase, type]);
+  
   return (
     <div className='home'>
       <Navbar/>

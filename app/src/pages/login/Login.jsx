@@ -3,6 +3,7 @@ import "./login.scss"
 import { AuthContext } from '../../components/context/authContext/AuthContext';
 import { login } from '../../components/context/authContext/apiActions';
 import { useNavigate } from 'react-router-dom';
+import {toast} from "react-toastify";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -13,7 +14,14 @@ const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        login({email, password}, dispatch);
+        if(!email || !password) {
+            return toast.error('Email or Password cannot be empty!');
+        }
+        try {
+            login({email, password}, dispatch);
+        } catch (err) {
+            return toast.error('Login failed!');
+        }
     };
     
     const navigateRegister = () => {
