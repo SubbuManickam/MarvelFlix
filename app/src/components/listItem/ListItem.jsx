@@ -47,11 +47,11 @@ const ListItem = ({index, item}) => {
           </div>
           <div className="itemInfoTop">
               <span>{movie.duration}</span>
-              <span className='age'>{item.age}+</span>
+              <span className='age'>{movie.age}+</span>
               <span>{movie.year}</span>
           </div>
           <div className="desc">{movie.desc}</div>
-          <div className="phase">{movie.phase}</div>
+          <div className="phase" style={{textTransform: 'capitalize'}}>{movie.phase}</div>
         </div>
         </>   
       )}

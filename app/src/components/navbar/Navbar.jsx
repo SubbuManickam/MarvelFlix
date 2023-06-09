@@ -36,7 +36,6 @@ const Navbar = () => {
         </div>
         <div className="right">
             <SearchIcon className='icon'/>
-            <span>KID</span>
             <NotificationsIcon className='icon'/>
             <AccountCircleIcon className='icon'/>
             <div className="profile">
