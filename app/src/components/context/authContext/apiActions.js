@@ -3,9 +3,10 @@ import { loginFailure, loginStart, loginSuccess } from "./AuthAction";
 import {toast} from "react-toastify";
 
 export const login = async (user, dispatch) => {
+    const apiBaseUrl = 'https://marvel-flix-backend.vercel.app/api';
     dispatch(loginStart());
     try {
-        const res = await axios.post("auth/login", user, {
+        const res = await axios.post(`${apiBaseUrl}/auth/login`, user, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',

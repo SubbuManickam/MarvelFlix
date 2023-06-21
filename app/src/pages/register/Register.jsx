@@ -10,7 +10,8 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [userName, setUserName] = useState("")
-    
+    const apiBaseUrl = 'https://marvel-flix-backend.vercel.app/api';
+
     const navigate = useNavigate(); 
 
     const emailRef = useRef()
@@ -33,7 +34,7 @@ const Register = () => {
             return toast.error('Username or Password cannot be empty!');
         }
         try{
-            await axios.post("auth/register", {userName, email, password},
+            await axios.post(`${apiBaseUrl}/auth/register`, {userName, email, password},
             {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
