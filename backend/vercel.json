@@ -22,5 +22,11 @@
                 "Access-Control-Allow-Origin": "*"
             }
         }
+    ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "https://marvel-flix-backend.vercel.app/api/"
+        }
     ]
 }
