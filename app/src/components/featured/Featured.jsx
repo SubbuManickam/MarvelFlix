@@ -34,7 +34,7 @@ const Featured = ({type, setPhase}) => {
 
   return (
     <div className='featured'>
-      {type && (
+      {/* {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
           <select name="phase" id="phase" onChange={(e) => setPhase(e.target.value)}>
@@ -46,8 +46,8 @@ const Featured = ({type, setPhase}) => {
             <option value="phase5">Phase 5</option>
           </select>
         </div>
-      )}
-      <img src={featuredMovie.thumb} alt="" />
+      )} */}
+      <img src={featuredMovie.thumb} alt="" className='featuredImage'/>
       <div className="info">
         <img src={featuredMovie.logo} alt="" />
         <span className='desc'>{featuredMovie.desc}</span>

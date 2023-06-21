@@ -7,10 +7,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthAction';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const {dispatch} = useContext(AuthContext);
+    const navigate = useNavigate(); 
 
     window.onscroll = () => {
         setIsScrolled(window.pageYOffset === 0 ? false : true);
@@ -42,7 +44,10 @@ const Navbar = () => {
                 <ArrowDropDownIcon className='icon'/>
                 <div className="options">
                     <span>Settings</span>
-                    <span onClick={() => dispatch(logout())}>Logout</span>
+                    <span onClick={() => {
+                      dispatch(logout());
+                      navigate("/login");
+                      }}>Logout</span>
                 </div>
             </div>
         </div>
