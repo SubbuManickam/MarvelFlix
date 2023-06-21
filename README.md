@@ -15,7 +15,7 @@ This is a Netflix-like clone application specifically for Marvel movies (MCU), b
 
 ## Technologies Used
 
-- MongoDB: NoSQL database for storing movie/TV show data
+- MongoDB: NoSQL database for storing movie/series data
 - Express.js: Backend framework for building API endpoints
 - React.js: Frontend library for building the user interface
 - Node.js: JavaScript runtime environment for running the backend server
@@ -29,4 +29,7 @@ This is a Netflix-like clone application specifically for Marvel movies (MCU), b
 
 This project is licensed under the [MIT License](LICENSE).
 
-- Add movies/TV shows to favorites list
+## Future features
+- Add movies/series to favorites list
+- Search specifically for movies/series
+- Keep a lookout for upcoming content using the Coming Soon tab
