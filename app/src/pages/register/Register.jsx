@@ -43,7 +43,7 @@ const Register = () => {
                     navigate("/register");
                 }
             }).catch(() => {
-                toast.error("Register Again!");
+                toast.error("Email Address already in use. Register Again!");
                 setEmail("");
                 navigate("/register");
             });
