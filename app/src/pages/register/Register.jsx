@@ -38,7 +38,7 @@ const Register = () => {
                     toast.success("Successfully Registered!");
                     navigate("/login");
                 } else {
-                    toast.error("Register Again!");
+                    toast.error("Email Address already in use. Register Again!");
                     setEmail("");
                     navigate("/register");
                 }
