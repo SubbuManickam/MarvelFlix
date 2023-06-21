@@ -1,6 +1,6 @@
 import axios from "axios";
 import { loginFailure, loginStart, loginSuccess } from "./AuthAction";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 export const login = async (user, dispatch) => {
     const apiBaseUrl = 'https://marvel-flix-backend.vercel.app/api';
@@ -10,7 +10,9 @@ export const login = async (user, dispatch) => {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
-              },
+                'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+                'Access-Control-Allow-Methods': '*',
+            },
         });
         const token = res.data;
         localStorage.setItem(("user"), JSON.stringify(token));
