@@ -4,7 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthContextProvider } from './components/context/authContext/AuthContext';
+import axios from 'axios';
 
+axios.defaults.baseURL = 'https://marvel-flix-backend.vercel.app/api/';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
