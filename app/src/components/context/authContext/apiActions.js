@@ -5,7 +5,12 @@ import {toast} from "react-toastify";
 export const login = async (user, dispatch) => {
     dispatch(loginStart());
     try {
-        const res = await axios.post("auth/login", user);
+        const res = await axios.post("auth/login", user, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+              },
+        });
         const token = res.data;
         localStorage.setItem(("user"), JSON.stringify(token));
         await dispatch(loginSuccess(res.data));

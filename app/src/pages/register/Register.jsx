@@ -33,7 +33,13 @@ const Register = () => {
             return toast.error('Username or Password cannot be empty!');
         }
         try{
-            await axios.post("auth/register", {userName, email, password}).then(response => {
+            await axios.post("auth/register", {userName, email, password},
+            {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                  },
+            }).then(response => {
                 if(response.status === 201) {
                     toast.success("Successfully Registered!");
                     navigate("/login");
