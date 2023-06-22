@@ -8,6 +8,8 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { AuthContext } from "./components/context/authContext/AuthContext";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Coming from "./pages/comingsoon/Coming";
+import MyList from "./pages/mylist/MyList";
 
 const App = () => {
   const {user} = useContext(AuthContext);
@@ -24,6 +26,8 @@ const App = () => {
             <>
               <Route path="/movies" element={<Home type="movies"/>}/>
               <Route path="/series" element={<Home type="series"/>}/>
+              <Route path="/coming" element={<Coming />}/>
+              <Route path="/mylist" element={<MyList />}/>
               <Route path="/watch" element={<Watch/>}/>
             </>
           )
